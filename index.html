@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+开发者：汪春旺
+日期：2020-05-20
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>基于Vue的音乐播放器</title>
+    <link type="text/css" rel="stylesheet" href="css/index.css">
+    <script src="js/lib/vue.js"></script>
+    <script src="js/lib/axios.min.js"></script>
+    <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+</head>
+
+<body>
+<div class="wrap">
+    <div class="play_wrap" id="player">
+        <div class="search_bar">
+            <img src="images/player_title.png" alt="">
+            <h5 class="closeMV cursor" @click="closeMV" v-show="isMVShow">[关闭MV]</h5>
+            <input autofocus="autofocus" type="text" v-model="keywords" @keyup.enter="searchMusic" placeholder="输入歌曲名/歌手名搜索"/>
+        </div>
+        <div class="center_con">
+            <div class="song_wrapper">
+                <ul name="list" tag="ul" class="song_list">
+                    <li v-for="(item,index) in musicList" :class="{active: index===curindex}">
+                        <span class="cursor" @click="playMusic(item.id, item.name, item.artists[0].name, index)">{{ item.name }}--{{ item.artists[0].name }}</span>
+                        <img v-if="item.mvid" class="mvicon cursor" src="images/mv.png" @click="playMV(item.mvid)">
+                    </li>
+                </ul>
+            </div>
+            <div class="player_con">
+                <!--播放条-->
+                <img src="images/player_bar.png" class="play_bar" :class="{isPlay: isPlay}">
+                <!-- 黑胶碟片 -->
+                <img src="images/disc.png" class="disc autoRotate" :class="{playing: isPlay}">
+                <!--背景图-->
+                <img class="cover autoRotate" :src="picUrl" :class="{playing: isPlay}">
+                <div class="playingMusic" v-show="info.musicName!=''"><h4>正在播放：{{info.musicName}}--{{info.Songer}}</h4></div>
+            </div>
+            <div class="comment_list">
+                <h5 v-show="hotComments.length!=0">热门评论</h5>
+                <div>
+                    <dl v-for="item in hotComments">
+                        <dt><img alt="" :src="item.user.avatarUrl"></dt>
+                        <dd class="name">{{ item.user.nickname }}</dd>
+                        <dd class="detail">{{ item.content }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="audio_con">
+            <audio controls autoplay @play="play" @pause="pause" class="myaudio" :src="musicUrl"></audio>
+        </div>
+        <div class="video_con" v-show="isMVShow">
+            <video controls autoplay :src="MVUrl"></video>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/index.js"></script>
+</html>
+
+
+

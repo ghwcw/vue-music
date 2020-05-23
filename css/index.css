@@ -1,0 +1,298 @@
+/*
+开发者：汪春旺
+日期：2020-05-20
+*/
+
+body, ul, dl, dd {
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/bg.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+.play_wrap {
+    width: 1200px;
+    height: 544px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -600px;
+    margin-top: -372px;
+}
+
+.search_bar {
+    height: 60px;
+    background-image: linear-gradient(to right, #1EACDA, #CC00FF);
+    overflow: hidden;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 11;
+}
+
+.search_bar img {
+    margin-left: 23px;
+}
+
+.search_bar input {
+    margin-right: 23px;
+    width: 296px;
+    height: 34px;
+    border-radius: 17px;
+    border: 0px;
+    background: url('../images/zoom.png') 265px center no-repeat rgba(255, 255, 255, 0.45);
+    text-indent: 15px;
+    outline: none;
+}
+
+.center_con {
+    height: 635px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+}
+
+.song_wrapper {
+    width: 300px;
+    height: 635px;
+    box-sizing: border-box;
+    padding: 10px 0;
+    list-style: none;
+    background: url('../images/line.png') right center no-repeat;
+    background-size: 1px 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+ /*隐藏滚动条*/
+ ::-webkit-scrollbar {
+     display: none;
+ }
+
+.song_list li {
+    font-size: 12px;
+    color: #333;
+    line-height: 36px;
+    width: 100%;
+    white-space: nowrap;
+}
+.song_list li span{
+    display: block;
+    float: left;
+    width: 240px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.song_list .mvicon{
+    padding-right: 15px;
+    float: right;
+    padding-top: 12px;
+    height: 13px;
+    width: 13px;
+    vertical-align: middle;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+.active {
+    color: #eeeeee !important;
+    font-size: medium !important;
+    background-image: linear-gradient(to left, #1EACDA, #CC00FF);
+}
+
+.player_con {
+    width: 600px;
+    height: 535px;
+    position: relative;
+}
+
+.play_bar {
+    position: absolute;
+    left: 300px;
+    top: 90px;
+    z-index: 10;
+    transform: rotate(-25deg);
+    transform-origin: 12px 12px;
+    transition: 1s;
+}
+
+.isPlay {
+    transform: rotate(0);
+}
+
+.disc {
+    position: absolute;
+    left: 173px;
+    top: 160px;
+    z-index: 9;
+}
+
+.cover {
+    position: absolute;
+    left: 225px;
+    top: 212px;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    z-index: 8;
+}
+
+.comment_list {
+    width: 300px;
+    height: 635px;
+    box-sizing: border-box;
+    padding: 10px;
+    list-style: none;
+    background: url('../images/line.png') left center no-repeat;
+    background-size: 1px 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.comment_list > div {
+    /* height: 100%; */
+}
+
+.comment_list dl {
+    padding-left: 55px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.comment_list dt {
+    position: absolute;
+    left: 4px;
+    top: 0px;
+}
+
+.comment_list dt img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.comment_list dd {
+    font-size: 12px;
+}
+
+.comment_list .name {
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+}
+
+.comment_list .detail {
+    color: #666;
+    margin-top: 5px;
+    line-height: 18px;
+}
+
+.audio_con {
+    height: 50px;
+    background-color: #f1f3f4;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.myaudio {
+    width: 1200px;
+    height: 40px;
+    margin-top: 5px;
+    outline: none;
+    background-color: #f1f3f4;
+}
+
+@keyframes Rotate {
+    from {
+        transform: rotateZ(0);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+.autoRotate {
+    animation-name: Rotate;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    animation-timing-function: linear;
+    animation-duration: 5s;
+}
+
+.playing {
+    animation-play-state: running;
+}
+
+/* vue的动画类 */
+.list-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.list-enter-active,
+.list-leave-active {
+    transition: all 1s;
+}
+
+.list-enter, .list-leave-to
+    /* .list-leave-active for below version 2.1.8 */
+{
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.playingMusic h4{
+    width: 600px;
+    text-align: center;
+    margin-top:550px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #085F95;
+}
+
+.clickRow{
+    color: #085F95 !important;
+}
+
+.video_con{
+    /*display: none;*/
+    width: 100%;
+    height: 688px;
+    position: relative;
+    top: -688px;
+    z-index: 12;
+    display: flex;
+    justify-content: center;
+}
+.video_con video{
+    /*display: none;*/
+    width: 99.9%;
+    height: 99.9%;
+    object-fit: cover;
+}
+
+.closeMV{
+    display: block;
+    color: #EEEEEE;
+    position: relative;
+    left: -300px;
+    top: 15px;
+    z-index: 13;
+}
