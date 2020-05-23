@@ -21,7 +21,7 @@
         <div class="search_bar">
             <img src="images/player_title.png" alt="">
             <h5 class="closeMV cursor" @click="closeMV" v-show="isMVShow">[关闭MV]</h5>
-            <input autofocus="autofocus" type="text" v-model="keywords" @keyup.enter="searchMusic" placeholder="输入歌曲名/歌手名搜索"/>
+            <input autofocus="autofocus" type="text" v-model="keywords" @keyup.enter="searchMusic" @click="searchMusic" placeholder="输入歌曲名/歌手名搜索"/>
         </div>
         <div class="center_con">
             <div class="song_wrapper">

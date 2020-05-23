@@ -57,6 +57,7 @@ let app = new Vue({
             self.curindex=index;
             // console.log(document.querySelector('.song_list li span').className);
             // console.log(index+' '+self.curindex);
+
             //播放地址
             axios.get('https://autumnfish.cn/song/url?id='+id)
                 .then(function (res) {
@@ -125,6 +126,7 @@ let app = new Vue({
 //搜索输入框获得焦点
 onload = function () {
     document.querySelector(".search_bar input").focus();
+
 };
 
 
